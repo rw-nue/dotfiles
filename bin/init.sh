@@ -17,6 +17,7 @@ git config user.email $gitUserEmail
 #inits for script
 dotfiles="$HOME/dotfiles"
 dotdotfiles="$HOME/.dotfiles"
+chmod +x "$dotfiles/update.sh"
 
 
 if [ ! -d "$dotdotfiles" ]; then
