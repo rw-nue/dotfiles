@@ -1,8 +1,15 @@
 #!/bin/bash
 
+#inits for script
+dotfiles="$HOME/dotfiles"
+dotdotfiles="$HOME/.dotfiles"
+chmod +x "$dotfiles/update.sh"
+
 # settings 
 gitUserName="rw-nue";
 gitUserEmail="$gitUserName@users.noreply.github.com"
+gitInitTemplateDir="$dotfiles/.git_template"
+
 DOT_FILES=( .vimrc .bashrc)
 DOT_DIRS=( .vim)
 
@@ -13,11 +20,10 @@ git config user.name $gitUserName
 echo "git config user.email $gitUserEmail"
 git config user.email $gitUserEmail
 
+echo "git config init.templatedir $gitInitTemplateDir"
+git config init.templatedir $gitInitTemplateDir
 
-#inits for script
-dotfiles="$HOME/dotfiles"
-dotdotfiles="$HOME/.dotfiles"
-chmod +x "$dotfiles/update.sh"
+
 
 
 if [ ! -d "$dotdotfiles" ]; then
@@ -70,6 +76,8 @@ done
 
 
 # submodules
+cd $dotfiles
+git submodule add -f https://github.com/gmarik/Vundle.vim.git .vim/bundle/Vundle.vim
 git submodule update --init
 
 # Vundle install
