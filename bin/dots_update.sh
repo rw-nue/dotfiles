@@ -21,21 +21,14 @@ else
 				if [ ! -L "$homeFile" ]; then
 						echo "$homeFile is not Symbolic Link , please init first";
 				else
-						if [ ! -a "$dotFile" ]; then
+						if [ ! -f "$dotFile" ]; then
 								echo "$dotFile doesnt exist" ;
 						else
 								cp $dotFile $mixedFile
 								if [ -a "$localFile" ]; then
 										cat $localFile >> $mixedFile
 								fi
-								ln -s $mixedFile $homeFile
 						fi
 				fi
 		done
-
-		# submodules
-		git submodule update --init
-
-		# Vundle install
-		vim +PluginInstall! +qall
 fi

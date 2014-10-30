@@ -3,7 +3,8 @@
 #inits for script
 dotfiles="$HOME/dotfiles"
 dotdotfiles="$HOME/.dotfiles"
-chmod +x "$dotfiles/bin/update.sh"
+chmod +x "$dotfiles/bin/dots_update.sh"
+chmod +x "$dotfiles/bin/dots_vundle_update.sh"
 
 # settings 
 gitUserName="rw-nue";
@@ -74,11 +75,4 @@ do
 		fi
 done
 
-
-# submodules
-cd $dotfiles
-git submodule add -f https://github.com/gmarik/Vundle.vim.git .vim/bundle/Vundle.vim
-git submodule update --init
-
-# Vundle install
-vim +PluginInstall! +qall
+sh ./dots_vundle_update.sh
