@@ -3,7 +3,7 @@
 #inits for script
 dotfiles="$HOME/dotfiles"
 dotdotfiles="$HOME/.dotfiles"
-chmod +x "$dotfiles/update.sh"
+chmod +x "$dotfiles/bin/update.sh"
 
 # settings 
 gitUserName="rw-nue";
