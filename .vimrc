@@ -15,7 +15,7 @@ Bundle 'ref.vim'
 Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'Shougo/vimproc'
-NeoBundle 'rking/ag.vim'
+Bundle 'rking/ag.vim'
 filetype plugin indent on
 
 map <Space> <Plug>(easymotion-prefix)
