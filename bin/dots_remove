@@ -1,0 +1,42 @@
+#!/bin/bash
+
+#inits for script
+dotfiles="$HOME/dotfiles"
+dotdotfiles="$HOME/.dotfiles"
+
+DOT_FILES=( .vimrc .bashrc)
+DOT_DIRS=( .vim)
+
+
+for file in ${DOT_FILES[@]}
+do
+		homeFile=$HOME/$file
+		originalFile=$dotdotfiles/${file}.original
+
+		echo "checking removing file $homeFile ..."
+
+		if [ -f "$originalFile" -a -L $homeFile]; then
+				echo "removeing link and put original file back ..."
+				rm $homeFile ;
+				mv $originalFile $homeFile ;
+		else
+				echo "pass this file ..." ;
+				echo "$homeFile is not a link nor $originalFile exists" ;
+		fi
+done
+for file in ${DOT_DIRS[@]}
+do
+		homeFile=$HOME/$file
+		originalFile=$dotdotfiles/${file}.original
+
+		echo "checking removing file $homeFile ..."
+		if [ -d "$originalFile" -a -L $homeFile]; then
+				echo "removeing link and put original file back ..."
+				rm $homeFile ;
+				mv $originalFile $homeFile ;
+		else
+				echo "pass this file ..." ;
+				echo "$homeFile is not a link nor $originalFile exists" ;
+		fi
+done
+
