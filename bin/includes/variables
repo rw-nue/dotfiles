@@ -3,5 +3,5 @@
 dotfiles="$HOME/dotfiles"
 dotdotfiles="$HOME/.dotfiles"
 
-DOT_FILES=( .vimrc .bashrc)
+DOT_FILES=( .vimrc .bashrc .zshrc)
 DOT_DIRS=( .vim)
