@@ -90,4 +90,5 @@ do
 		fi
 done
 
-sh ./dots_vundle_update.sh
+sh $dotfiles/bin/dots_vundle_update.sh
+
