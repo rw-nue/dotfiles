@@ -13,10 +13,10 @@ do
 		homeFile=$HOME/$file
 		originalFile=$dotdotfiles/${file}.original
 
-		echo "checking removing file $homeFile ..."
+		echo "checking removing file $homeFile ...";
 
-		if [ -f "$originalFile" -a -L $homeFile]; then
-				echo "removeing link and put original file back ..."
+		if [ -f "$originalFile" -a -L $homeFile ]; then
+				echo "removeing link and put original file back ...";
 				rm $homeFile ;
 				mv $originalFile $homeFile ;
 		else
@@ -29,9 +29,9 @@ do
 		homeFile=$HOME/$file
 		originalFile=$dotdotfiles/${file}.original
 
-		echo "checking removing file $homeFile ..."
-		if [ -d "$originalFile" -a -L $homeFile]; then
-				echo "removeing link and put original file back ..."
+		echo "checking removing file $homeFile ...";
+		if [ -d "$originalFile" -a -L $homeFile ]; then
+				echo "removeing link and put original file back ...";
 				rm $homeFile ;
 				mv $originalFile $homeFile ;
 		else
