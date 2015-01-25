@@ -1,9 +1,5 @@
 #!/bin/bash 
-
-DOT_FILES=( .vimrc .bashrc)
-#inits for script
-dotfiles="$HOME/dotfiles"
-dotdotfiles="$HOME/.dotfiles"
+. includes/variables
 
 echo "checking updating dotfiles ..."
 

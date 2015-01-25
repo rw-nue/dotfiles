@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dotfiles="$HOME/dotfiles"
+dotdotfiles="$HOME/.dotfiles"
+
+DOT_FILES=( .vimrc .bashrc)
+DOT_DIRS=( .vim)

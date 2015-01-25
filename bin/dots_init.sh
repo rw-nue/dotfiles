@@ -1,8 +1,7 @@
 #!/bin/bash
+. includes/variables
 
 #inits for script
-dotfiles="$HOME/dotfiles"
-dotdotfiles="$HOME/.dotfiles"
 
 if [ ! -d "$dotdotfiles" ]; then
 		mkdir $dotdotfiles ;
@@ -20,8 +19,6 @@ gitUserName="rw-nue";
 gitUserEmail="$gitUserName@users.noreply.github.com"
 gitInitTemplateDir="$dotfiles/.git_template"
 
-DOT_FILES=( .vimrc .bashrc)
-DOT_DIRS=( .vim)
 
 # git config for dotfile directory
 cd $HOME/dotfiles
