@@ -57,7 +57,6 @@ do
 								cp $homeFile $originalFile
 								mv $homeFile $localFile
 								cp $dotFile $mixedFile
-								cat $localFile >> $mixedFile
 								ln -s $mixedFile $homeFile
 						fi
 				else
@@ -91,4 +90,3 @@ do
 done
 
 sh $dotfiles/bin/dots_vundle_update.sh
-
