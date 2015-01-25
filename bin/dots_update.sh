@@ -16,13 +16,26 @@ do
 		originalFile=$dotdotfiles/${file}.original
 		mixedFile=$dotdotfiles/${file}
 
+		echo "[ ${file} ]";
 		echo "checking updating $homeFile ...";
 
-		if [ ! -L "$homeFile" -o ! -f "$dotFile" ]; then
-				echo "$homeFile is not Symbolic Link nor $dotFile exits";
+		# create if none 
+		if [ ! -e "$homeFile" ]; then
+				echo "${homeFile} does not exist , creating blank ..."
+				touch $homeFile ;
+		fi
+
+		if [ ! -e "$dotFile" ]; then
+				echo "$dotFile does not exist";
 				echo "passing this file ...";
+				continue
+		elif [ ! -L "$homeFile" ]; then
+				# file exists but not a link ... so may be can init here 
+				echo "$homeFile is not Symbolic Link nor $dotFile exists";
+				echo "passing this file ...";
+				continue
 		else
-				echo "executing updating $homeFile ...";
+				echo "execute updating $homeFile ...";
 				cp $dotFile $mixedFile
 				if [ -f "$localFile" ]; then
 						firstLine="###### LOCAL FILE BELOW ######";
