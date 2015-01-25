@@ -26,11 +26,17 @@ do
 				echo "$homeFile is not Symbolic Link nor $dotFile exits";
 				echo "passing this file ...";
 		else
-		echo "executing updating $homeFile ...";
+				echo "executing updating $homeFile ...";
 				cp $dotFile $mixedFile
 				if [ -f "$localFile" ]; then
-						cat "###### LOCAL FILE BELOW ######"
-						cat "# update $localFile and $dotfiles/bin/dot_update.sh to edit here#"
+						comment="###### LOCAL FILE BELOW ######";
+						comment2="# update ${localFile} and ${dotfiles}/bin/dot_update.sh to edit here#";
+						if [ "$file" == ".vimrc" ]; then
+								comment="\"${comment}";
+								comment2="\"${comment2}";
+						fi
+						echo $comment >> $mixedFile;
+						echo $comment2 >> $mixedFile;
 						cat $localFile >> $mixedFile
 				fi
 		fi
