@@ -47,25 +47,23 @@ do
 
 		echo "checking initializing file $homeFile ..."
 
-		if [ -a "$homeFile" ]; then
-				if [ -a "$dotFile" ]; then
-						if [ -L "$homeFile" ]; then
-								echo "pass this file ..." ;
-								echo "$homeFile is already a symbolic link" ;
-						else
-								echo "executing initializing $homeFile ..."
-								cp $homeFile $originalFile
-								mv $homeFile $localFile
-								cp $dotFile $mixedFile
-								ln -s $mixedFile $homeFile
-						fi
-				else
-						echo "pass this file ..." ;
-						echo "$dotFile doesnt exist" ;
-				fi
-		else
+		if [ ! -e "$homeFile" ]; then
+				echo "$homeFile doesnt exist , create blank $homeFile" ;
+				touch $homeFile ;
+		fi
+
+		if [ -f "$dotFile" ]; then
 				echo "pass this file ..." ;
-				echo "$homeFile doesnt exist" ;
+				echo "$dotFile doesnt exist" ;
+		elif [ -f "$homeFile" -a -L "$homeFile" ]; then
+				echo "pass this file ..." ;
+				echo "$homeFile is already a symbolic link" ;
+		else
+				echo "executing initializing $homeFile ..."
+				cp $homeFile $originalFile
+				mv $homeFile $localFile
+				cp $dotFile $mixedFile
+				ln -s $mixedFile $homeFile
 		fi
 done
 for file in ${DOT_DIRS[@]}
@@ -75,6 +73,11 @@ do
 		originalFile=$dotdotfiles/${file}.original
 
 		echo "checking initializing directory $homeFile ..."
+		if [ ! -e "$homeFile" ]; then
+				echo "$homeFile doesnt exist , create blank $homeFile" ;
+				mkdir -p $homeFile ;
+		fi
+
 		if [ ! -d "$dotFile" ]; then
 				echo "pass this directory ..." ;
 				echo "$dotFile doesnt exist"
@@ -82,8 +85,7 @@ do
 				echo "pass this directory ..." ;
 				echo "has link already $homeFile" ;
 		else
-
-		echo "executing initializing directory $homeFile ..."
+				echo "executing initializing directory $homeFile ..."
 				mv $homeFile $originalFile
 				ln -s $dotFile $homeFile
 		fi
