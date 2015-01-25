@@ -25,15 +25,18 @@ do
 				echo "executing updating $homeFile ...";
 				cp $dotFile $mixedFile
 				if [ -f "$localFile" ]; then
-						comment="###### LOCAL FILE BELOW ######";
-						comment2="# update ${localFile} and ${dotfiles}/bin/dot_update.sh to edit here#";
+						firstLine="###### LOCAL FILE BELOW ######";
+						secondLine="# update ${localFile} and ${dotfiles}/bin/dot_update.sh to edit here#";
 						if [ "$file" == ".vimrc" ]; then
-								comment="\"${comment}";
-								comment2="\"${comment2}";
+								#adding comment out
+								firstLine="\"${firstLine}";
+								secondLine="\"${secondLine}";
 						fi
-						echo $comment >> $mixedFile;
-						echo $comment2 >> $mixedFile;
-						cat $localFile >> $mixedFile
+						echo "
+						" >> $mixedFile;
+						echo $firstLine >> $mixedFile;
+						echo $secondLine >> $mixedFile;
+						cat $localFile >> $mixedFile;
 				fi
 		fi
 done
