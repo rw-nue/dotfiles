@@ -3,6 +3,15 @@
 #inits for script
 dotfiles="$HOME/dotfiles"
 dotdotfiles="$HOME/.dotfiles"
+
+if [ ! -d "$dotdotfiles" ]; then
+		mkdir $dotdotfiles ;
+else
+		echo "exit ... "
+		echo "$dotdotfiles exists cannot setup dotfiles";
+		exit 0;
+fi
+
 chmod +x "$dotfiles/bin/dots_update.sh"
 chmod +x "$dotfiles/bin/dots_vundle_update.sh"
 
@@ -27,9 +36,6 @@ git config init.templatedir $gitInitTemplateDir
 
 
 
-if [ ! -d "$dotdotfiles" ]; then
-		mkdir $dotdotfiles ;
-fi
 
 for file in ${DOT_FILES[@]}
 do
@@ -39,12 +45,15 @@ do
 		originalFile=$dotdotfiles/${file}.original
 		mixedFile=$dotdotfiles/${file}
 
+		echo "checking initializing file $homeFile ..."
 
 		if [ -a "$homeFile" ]; then
 				if [ -a "$dotFile" ]; then
 						if [ -L "$homeFile" ]; then
-								echo "has link already" ;
+								echo "pass this file ..." ;
+								echo "$homeFile is already a symbolic link" ;
 						else
+								echo "executing initializing $homeFile ..."
 								cp $homeFile $originalFile
 								mv $homeFile $localFile
 								cp $dotFile $mixedFile
@@ -52,10 +61,12 @@ do
 								ln -s $mixedFile $homeFile
 						fi
 				else
-						echo "dot file doesnt exist" ;
+						echo "pass this file ..." ;
+						echo "$dotFile doesnt exist" ;
 				fi
 		else
-				echo "$file doesnt exist" ;
+				echo "pass this file ..." ;
+				echo "$homeFile doesnt exist" ;
 		fi
 done
 for file in ${DOT_DIRS[@]}
@@ -63,14 +74,18 @@ do
 		homeFile=$HOME/$file
 		dotFile=$dotfiles/$file
 		originalFile=$dotdotfiles/${file}.original
+
+		echo "checking initializing directory $homeFile ..."
 		if [ ! -d "$dotFile" ]; then
+				echo "pass this directory ..." ;
 				echo "$dotFile doesnt exist"
 		elif [ -d "$homeFile" -a -L "$homeFile" ]; then
+				echo "pass this directory ..." ;
 				echo "has link already $homeFile" ;
 		else
-				echo "$originalFile backup "
+
+		echo "executing initializing directory $homeFile ..."
 				mv $homeFile $originalFile
-				echo "ln -s $dotFile $homeFile"
 				ln -s $dotFile $homeFile
 		fi
 done
