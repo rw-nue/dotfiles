@@ -1,5 +1,5 @@
 #!/bin/bash
-. includes/variables
+. $HOME/dotfiles/bin/includes/variables
 
 #inits for script
 
