@@ -1,13 +1,18 @@
 #!/bin/bash
-
-#inits for script
-dotfiles="$HOME/dotfiles"
-dotdotfiles="$HOME/.dotfiles"
-
-DOT_FILES=( .vimrc .bashrc)
-DOT_DIRS=( .vim)
+. $HOME/dotfiles/bin/includes/variables
 
 
+#confirmation 
+echo "are you sure? type yes if yes"
+read confirm
+
+if [ "$confirm" != "yes" ]; then
+		echo "aborted"
+		exit 1 ;
+fi
+
+
+#execute
 for file in ${DOT_FILES[@]}
 do
 		homeFile=$HOME/$file
