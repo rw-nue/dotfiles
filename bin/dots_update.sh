@@ -1,9 +1,13 @@
 #!/bin/bash 
 . $HOME/dotfiles/bin/includes/variables
 
+if [ ${#} == 1 ] && [ ${1} == "--force" ] ;then
+		FORCED_FLG="TRUE"
+fi
+
 echo "checking updating dotfiles ..."
 
-if [ ! -d "$dotdotfiles" ]; then
+if [ ! -e "$dotdotfiles" -o ! -d "$dotdotfiles" ]; then
 		echo "$dotdotfiles has not created , please init first" ;
 		exit 0 ;
 fi
@@ -19,23 +23,40 @@ do
 		echo "[ ${file} ]";
 		echo "checking updating $homeFile ...";
 
-		# create if none 
-		if [ ! -e "$homeFile" ]; then
+		# create if none and if forced init
+		if [ "${FORCED_FLG}" == "TRUE" -a ! -e "$homeFile" ]; then
 				echo "${homeFile} does not exist , creating blank ..."
 				touch $homeFile ;
 		fi
 
-		if [ ! -e "$dotFile" ]; then
-				echo "$dotFile does not exist";
-				echo "passing this file ...";
+		if [ ! -e "$homeFile" ]; then
+				echo "$homeFile does not exist";
+				echo "<<< passing this file ...";
 				continue
-		elif [ ! -L "$homeFile" ]; then
+		elif [ ! -e "$dotFile" ]; then
+				echo "$dotFile does not exist";
+				echo "<<< passing this file ...";
+				continue
+		elif [  ! -L "$homeFile" ]; then
+				echo "$homeFile is not Symbolic Link";
+
 				# file exists but not a link ... so may be can init here 
-				echo "$homeFile is not Symbolic Link nor $dotFile exists";
-				echo "passing this file ...";
+
+				if [ "${FORCED_FLG}" == "TRUE" ]; then
+						echo "initializing ${file} since forced";
+						echo ">>> executing initializing $homeFile ..."
+						cp $homeFile $originalFile
+						mv $homeFile $localFile
+						cp $dotFile $mixedFile
+						ln -s $mixedFile $homeFile
+				else
+				echo "<<< passing this file ...";
+				echo "... you can add --force option to init this file";
+				fi
+
 				continue
 		else
-				echo "execute updating $homeFile ...";
+				echo ">>> execute updating $homeFile ...";
 				cp $dotFile $mixedFile
 				if [ -f "$localFile" ]; then
 						firstLine="###### LOCAL FILE BELOW ######";
