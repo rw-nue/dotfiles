@@ -1,97 +1,9 @@
 # User specific aliases and functions
 
-alias lbr="vim $HOME/.dotfiles/.bashrc.local"
-alias lvr="vim $HOME/.dotfiles/.vimrc.local"
-alias lzr="vim $HOME/.dotfiles/.zshrc.local"
-alias dbr="vim $HOME/dotfiles/.bashrc"
-alias dvr="vim $HOME/dotfiles/.vimrc"
-alias dzr="vim $HOME/dotfiles/.zshrc"
-
-alias vr="vim ~/.vimrc"
-alias br="vim ~/.bashrc"
-alias zr="vim ~/.zshrc"
-
-alias svr="source ~/.vimrc"
-alias sbr="source ~/.bashrc"
-alias szr="source ~/.zshrc"
-
-alias vdupdate="vim $HOME/dotfiles/bin/dots_update.sh"
-alias vdinit="vim $HOME/dotfiles/bin/dots_init.sh"
-
-alias dotfiles_update="sh $HOME/dotfiles/bin/dots_update.sh"
-alias dotfiles_init="sh $HOME/dotfiles/bin/dots_init.sh"
-
-alias cdot="cd $HOME/dotfiles"
-
 # add if statement
 if [ -e $HOME/bin/myfunc.sh ]; then
 . $HOME/bin/myfunc.sh
 fi
-alias ls="ls -G"
-alias la="ls -laG"
-alias ll="ls -lG"
-
-
-alias ap="cd /as"
-alias bd="brew doctor"
-alias bl="brew list"
-alias bu="brew update"
-alias bi="brew install"
-
-# alias gdw="git diff --word-diff"
-# alias gdf="git diff"
-alias ts="tig status"
-alias gsf="git submodule foreach"
-alias gap="git add -p"
-alias gai="git add -i"
-# alias gdc="git diff --cached"
-alias gco="git checkout"
-alias gci="git commit"
-alias gl="git log"
-alias gls="git log --stat"
-alias glp="git log -p"
-alias l="git log --graph --all --format='%C(cyan) %p %Cred %h %C(white) %s %Cgreen(%cr)%C(cyan) <%an>%C(bold yellow)%d%Creset' --since=yesterday"
-alias ltoday="git log --graph --all --format='%C(cyan) %p %Cred %h %C(white) %s %Cgreen(%cr)%C(cyan) <%an>%C(bold yellow)%d%Creset' --since=today"
-alias lall="git log --graph --all --format='%C(cyan) %p %Cred %h %C(white) %s %Cgreen(%cr)%C(cyan) <%an>%C(bold yellow)%d%Creset'"
-alias gcm="git commit -m"
-alias gcmam="git commit --amend -m" 
-alias sr="git remote show origin"
-alias sb="git show-branch --all"
-alias ref="git log --graph --all --simplify-by-decoration --pretty=format:'%C(bold yellow)%d %Cred %h %C(white) %s %Cgreen(%cr)%C(cyan) <%an>%Creset' "
-
-alias b="git branch "
-alias v="av"
-alias vv="git branch -vv"
-alias m="git commit -m"
-alias c="git checkout"
-alias a="git add --all"
-alias r="git reset"
-alias s="sh $HOME/bin/gs"
-alias dc="sh $HOME/bin/gdc"
-
-alias sms="git submodule summary"
-alias smu="git submodule update"
-alias smi="git submodule update --init"
-alias smr="git submodule update --remote"
-
-alias gss="git stash save -u"
-alias gsc="git stash clear"
-alias gsp="git stash pop"
-alias gsa="git stash apply"
-alias gsl="git stash list"
-
-alias br="vim ~/.bashrc"
-alias sbr="source ~/.bashrc"
-alias zr="vim ~/.zshrc"
-alias szr="source ~/.zshrc"
-
-alias vr="vim ~/.vimrc"
-alias svr="source ~/.vimrc"
-
-alias zr="vim ~/.zshrc"
-alias szr="source ~/.zshrc"
-
-alias scr="vim ~/.screenrc"
 
 function gsrev(){
 if [ "$1" == "" ] ; then
