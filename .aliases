@@ -105,6 +105,7 @@ alias dzr="vim $HOME/dotfiles/.zshrc"
 alias vr="vim ~/.vimrc"
 alias br="vim ~/.bashrc"
 alias zr="vim ~/.zshrc"
+alias alr="vim $HOME/dotfiles/.aliases"
 alias scr="vim ~/.screenrc"
 
 alias svr="source ~/.vimrc"
