@@ -68,6 +68,7 @@ alias -g WC="| wc"
 alias -g LC="| wc -l"
 alias -g Z="| tail"
 alias -g L="| less"
+alias -g V="| lv"
 alias -g ..="../"
 alias -g ...="../../"
 
@@ -76,6 +77,8 @@ alias l='ls -CF'
 alias ll='ls -alF'
 alias la='ls -A'
 alias lf="ls -F"
+
+alias lv="lv -lc"
 
 alias screen="screen -U"
 #alias gls="git ls-files"
