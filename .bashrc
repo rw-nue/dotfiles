@@ -1,8 +1,8 @@
 # User specific aliases and functions
 
 alias lbr="vim $HOME/.dotfiles/.bashrc.local"
-alias lvr="vim $HOME/.dotfiles/.bashrc.local"
-alias lzr="vim $HOME/.dotfiles/.zshrc"
+alias lvr="vim $HOME/.dotfiles/.vimrc.local"
+alias lzr="vim $HOME/.dotfiles/.zshrc.local"
 alias dbr="vim $HOME/dotfiles/.bashrc"
 alias dvr="vim $HOME/dotfiles/.vimrc"
 alias dzr="vim $HOME/dotfiles/.zshrc"
