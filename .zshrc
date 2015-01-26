@@ -69,10 +69,6 @@ alias screen="screen -U"
 alias gls="git ls-files"
 alias -g ..="../"
 alias grep="grep --color"
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ls='ls -alh --color'
 
 alias lt='ls -AltrF'
 alias hi='history 1'
@@ -340,18 +336,6 @@ if [[ $ZSH_VERSION == (<5->|4.<4->|4.3.<10->)* ]]; then
   source ~/.zsh/term.zshrc
 fi
 
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-darwin*)
-#Mac用の設定
-export CLICOLOR=1
-alias ls='ls -G -F'
-;;
-linux*)
-#Linux用の設定
-;;
-esac
 export GREP_OPTIONS='--binary-files=without-match'
 
 function set_target_branch(){
