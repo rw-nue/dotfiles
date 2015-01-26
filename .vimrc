@@ -5,7 +5,8 @@ set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Plugin 'ctrlp.vim'
 Bundle 'unite.vim'
-Plugin 'Lokaltog/vim-easymotion'
+Plugin 'haya14busa/vim-easymotion'
+"Plugin 'Lokaltog/vim-easymotion'
 Bundle 'cake.vim'
 Bundle 'neocomplcache'
 Bundle 'surround.vim'
@@ -32,6 +33,7 @@ let g:EasyMotion_use_smartsign_jp = 1
 let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
+let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcv'
 
 set number
 set cindent
@@ -103,6 +105,7 @@ hi DiffChange ctermfg=black ctermbg=3
 hi DiffDelete ctermfg=black ctermbg=6
 hi DiffText   ctermfg=black ctermbg=7
 
-
+let g:NERDCreateDefaultMappings = 0 
+let NERDSpaceDelims = 1 
 nmap ,c <Plug>NERDCommenterToggle
 vmap ,c <Plug>NERDCommenterToggle

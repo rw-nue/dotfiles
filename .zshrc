@@ -1,3 +1,12 @@
+autoload -U compinit
+compinit -u
+
+source ~/.bash_profile
+source ~/.bashrc
+if [ -f ~/dotfiles/.aliases ]; then
+source ~/dotfiles/.aliases
+fi
+
 alias dpl="cd /tmp/gpdpl"
 alias d="git diff"
 alias t="tig"
@@ -11,10 +20,6 @@ alias r="git reset"
 alias where="command -v"
 alias j="jobs -l"
 
-alias gcm="git commit -m"
-alias la="ls -a"
-alias lf="ls -F"
-alias ll="ls -l"
 
 alias du="du -h"
 alias df="df -h"
@@ -30,13 +35,61 @@ alias gap="git add -p"
 alias gco="git checkout"
 alias garzip="git archive --format=zip HEAD -o /tmp/gitarchived.zip"
 
-alias vr="vim ~/.vimrc"
-alias br="vim ~/.bashrc"
-alias zr="vim ~/.zshrc"
 
-alias svr="source ~/.vimrc"
-alias sbr="source ~/.bashrc"
-alias szr="source ~/.zshrc"
+# global aliases
+alias -g T="| tee"
+alias -g G="| grep"
+alias -g L="|& $PAGER"
+alias -g WC="| wc"
+alias -g LC="| wc -l"
+alias -g Z="| tail"
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -alh --color'
+alias vi='vim'
+alias vim='vim'
+alias la="ls -a"
+alias lf="ls -F"
+alias ll="ls -l"
+
+
+# global aliases
+#alias -g T="| tee"
+alias -g G="| grep"
+alias -g L="| less"
+alias -g S="| less"
+#alias -g L="|& $PAGER"
+alias -g WC="| wc"
+alias -g LC="| wc -l"
+alias -g Z="| tail"
+alias screen="screen -U"
+alias gls="git ls-files"
+alias -g ..="../"
+alias grep="grep --color"
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias ls='ls -alh --color'
+
+alias lt='ls -AltrF'
+alias hi='history 1'
+
+alias vi='vim'
+alias vim='vim'
+
+ 
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+ 
+alias mkdir='mkdir -p'
+
+alias -g B='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
+alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOT BRANCH>" | head -n 1 | sed "s/^\*\s*//" | sed "s/remotes\/[^\/]*\/\(\S*\)/\1 \0/"`'
+alias -g D='`echo S | sed "s/\([0-9a-f]*\)/\1..\1^/" | xargs git diff --name-only | peco --prompt "GIT DIFF FILE>" | head -n 1 | sed "s/^\(\S*\).*/\1/"`'
 
 # LANG
 export LANG=ja_JP.UTF-8
@@ -165,32 +218,25 @@ setopt brace_ccl
 ## コマンドラインでも # 以降をコメントと見なす
 #setopt interactive_comments
  
-# PAGER
-if type lv > /dev/null 2>&1; then
-## lvを優先する。
-export PAGER="lv"
-else
-## lvがなかったらlessを使う。
-export PAGER="less"
-fi
+## PAGER
+#if type lv > /dev/null 2>&1; then
+### lvを優先する。
+#export PAGER="lv"
+#else
+### lvがなかったらlessを使う。
+#export PAGER="less"
+#fi
+# 
+#if [ "$PAGER" = "lv" ]; then
+### -c: ANSIエスケープシーケンスの色付けなどを有効にする。
+### -l: 1行が長くと折り返されていても1行として扱う。
+### （コピーしたときに余計な改行を入れない。）
+#export LV="-c -l"
+#else
+### lvがなくてもlvでページャーを起動する。
+#alias lv="$PAGER"
+#fi
  
-if [ "$PAGER" = "lv" ]; then
-## -c: ANSIエスケープシーケンスの色付けなどを有効にする。
-## -l: 1行が長くと折り返されていても1行として扱う。
-## （コピーしたときに余計な改行を入れない。）
-export LV="-c -l"
-else
-## lvがなくてもlvでページャーを起動する。
-alias lv="$PAGER"
-fi
- 
-# global aliases
-alias -g T="| tee"
-alias -g G="| grep"
-alias -g L="|& $PAGER"
-alias -g WC="| wc"
-alias -g LC="| wc -l"
-alias -g Z="| tail"
  
 # 以下は.bashrcと共用
  
@@ -206,13 +252,6 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 fi
  
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias ls='ls -alh --color'
-alias vi='vim'
-alias vim='vim'
  
  
 # Load RVM into a shell session *as a function*
@@ -237,20 +276,38 @@ esac
  
 export GREP_OPTIONS='--binary-files=without-match'
 
+function agvim () {
+vim $( ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1 }')
+}
 function ptvim () {
-  vim $(pt $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
- }
+vim $( pt $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1 }')
+}
 
-function peco-select-history() {
-local tac
-if which tac > /dev/null; then
-tac="tac"
-else
-tac="tail -r"
-fi
-BUFFER=$(history -n 1 | \
-eval $tac | \
-peco --query "$LBUFFER")
+#function peco-select-history() {
+#local tac
+#if which tac > /dev/null; then
+#tac="tac"
+#else
+#tac="tail -r"
+#fi
+#BUFFER=$(history -n 1 | \
+#eval $tac | \
+#peco --query "$LBUFFER")
+#CURSOR=$#BUFFER
+#zle clear-screen
+#}
+#zle -N peco-select-history
+#bindkey '^r' peco-select-history
+
+
+function peco-select-history(){
+BUFFER=$(\history 1 | \
+	sort -r -k 2 | \
+	uniq -1 | \
+	sort -r | \
+	awk '$1=$1' | \
+	cut -d" " -f 2- | \
+	peco --query "$LBUFFER")
 CURSOR=$#BUFFER
 zle clear-screen
 }
@@ -268,8 +325,87 @@ zle clear-screen
 zle -N peco-cd
 bindkey '^x^f' peco-cd
 
+peco-lscd(){
+    local dir="$( ls -1d */ | peco )"
+    if [ ! -z "$dir" ] ; then
+	    cd "$dir"
+    fi
+}
+alias C=peco-lscd
+
+
 typeset -ga precmd_functions
 typeset -ga preexec_functions
 if [[ $ZSH_VERSION == (<5->|4.<4->|4.3.<10->)* ]]; then
   source ~/.zsh/term.zshrc
 fi
+
+########################################
+# OS 別の設定
+case ${OSTYPE} in
+darwin*)
+#Mac用の設定
+export CLICOLOR=1
+alias ls='ls -G -F'
+;;
+linux*)
+#Linux用の設定
+;;
+esac
+export GREP_OPTIONS='--binary-files=without-match'
+
+function set_target_branch(){
+	if [ $# -lt 1 ] ; then
+		echo "no argument error"
+	else
+		_set_zshrc_variable targetbranch ${1}
+		show_set_branch
+	fi
+}
+function set_now_branch(){
+	if [ $# -lt 1 ] ; then
+		echo "no argument error"
+	else
+		_set_zshrc_variable nowbranch ${1}
+		show_set_branch
+	fi
+}
+
+function _set_zshrc_variable(){
+	if [ $# -lt 2 ] ; then
+		echo "argument error"
+	else
+		sed -i -E "s/^${1}=.*$/${1}=\"${2}\"/" ${HOME}/.dotfiles/.zshrc.local
+		szr
+		echo "${1} set to >>> ${2}" ;
+	fi
+}
+
+function wget_ticket(){
+rnd=`ruby -e 'puts Time.now.to_f' | md5`
+echo ${rnd} ;
+}
+
+
+alias adbinstall="adb install -r"
+diffbranch(){
+	git diff ${1}..${2} --stat
+}
+
+alias -g N="${nowbranch}"
+alias -g T="${targetbranch}"
+function show_set_branch(){
+echo "
+#########################
+now    => ${nowbranch}
+target => ${targetbranch}
+#########################
+"
+}
+
+# now branch usage put this in .zshrc.local
+#########################
+#nowbranch="feature_30610"
+#targetbranch="ver_30277"
+#########################
+

@@ -59,6 +59,7 @@ do
 				echo ">>> execute updating $homeFile ...";
 				cp $dotFile $mixedFile
 				if [ -f "$localFile" ]; then
+						echo ">>> append $localFile to $mixedFile...";
 						firstLine="###### LOCAL FILE BELOW ######";
 						secondLine="# update ${localFile} and ${dotfiles}/bin/dot_update.sh to edit here#";
 						if [ "$file" == ".vimrc" ]; then
