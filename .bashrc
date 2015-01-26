@@ -24,7 +24,9 @@ alias dotfiles_init="sh $HOME/dotfiles/bin/dots_init.sh"
 alias cdot="cd $HOME/dotfiles"
 
 # add if statement
+if [ -e $HOME/bin/myfunc.sh ]; then
 . $HOME/bin/myfunc.sh
+fi
 alias ls="ls -G"
 alias la="ls -laG"
 alias ll="ls -lG"
