@@ -49,7 +49,7 @@ do
 				touch $homeFile ;
 		fi
 
-		if [ -f "$dotFile" ]; then
+		if [ ! -e "$dotFile" ]; then
 				echo "pass this file ..." ;
 				echo "$dotFile doesnt exist" ;
 		elif [ -f "$homeFile" -a -L "$homeFile" ]; then
