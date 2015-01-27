@@ -49,6 +49,9 @@ set noswapfile
 set encoding=utf8
 set fileencoding=utf8
 set fileencodings=utf8
+set incsearch
+set hlsearch
+
 
 augroup filetypedetect
 au! BufRead , BufNewFile *.ctp	 setfiletype php
