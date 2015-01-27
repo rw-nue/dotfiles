@@ -69,6 +69,11 @@ alias -g LC="| wc -l"
 alias -g Z="| tail"
 alias -g L="| less"
 alias -g V="| lv"
+alias -g H='| head'
+alias -g S='| sort'
+alias -g W='| wc'
+alias -g X='| xargs'
+
 alias -g ..="../"
 alias -g ...="../../"
 
