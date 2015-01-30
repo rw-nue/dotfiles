@@ -51,9 +51,6 @@ alias gsl="git stash list"
 
 alias garzip="git archive --format=zip HEAD -o /tmp/gitarchived.zip"
 
-
-
-alias dpl="cd /tmp/gpdpl"
 alias where="command -v"
 alias j="jobs -l"
 alias du="du -h"
