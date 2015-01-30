@@ -9,28 +9,28 @@ function gsrev(){
 if [ "$1" == "" ] ; then
 echo "enter stash number as argument"
 else
-git stash show -p stash@{$1} | git apply -R
+git stash show -p "stash@{${1}}" | git apply -R
 fi
 }
 function gsshow(){
 if [ "$1" == "" ] ; then
 echo "enter stash number as argument"
 else
-git stash show -p stash@{$1}
+git stash show -p "stash@{${1}}"
 fi
 }
 function gsapply(){
 if [ "$1" == "" ] ; then
 echo "enter stash number as argument"
 else
-git stash apply stash@{$1}
+git stash apply "stash@{${1}}"
 fi
 }
 function gsdrop(){
 if [ "$1" == "" ] ; then
 echo "enter stash number as argument"
 else
-git stash drop stash@{$1}
+git stash drop "stash@{${1}}"
 fi
 }
 

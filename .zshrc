@@ -264,6 +264,7 @@ function set_target_branch(){
 		echo "no argument error"
 	else
 		_set_zshrc_variable targetbranch ${1}
+		dotfiles_update
 		show_set_branch
 	fi
 }
@@ -272,6 +273,7 @@ function set_now_branch(){
 		echo "no argument error"
 	else
 		_set_zshrc_variable nowbranch ${1}
+		dotfiles_update
 		show_set_branch
 	fi
 }
