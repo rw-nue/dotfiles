@@ -40,9 +40,16 @@ set number
 set cindent
 syntax on
 set backspace=2
-set tabstop=4
+set tabstop=2
+set shiftwidth=2
 set wildmode=longest,list
+set wildmenu
+set cmdheight=2
 set autoindent
+set smartindent
+set smarttab
+set expandtab
+highlight LineNr ctermfg=darkyellow
 
 set nobackup
 set noswapfile
@@ -50,6 +57,8 @@ set noswapfile
 set encoding=utf8
 set fileencoding=utf8
 set fileencodings=utf8
+
+set smartcase
 set incsearch
 set hlsearch
 
@@ -154,11 +163,11 @@ endfunction
 """"""""""""""""""""""""""""""
 colorscheme default
 " vim-indent-guides
-" let g:indent_guides_auto_colors=0
+ " let g:indent_guides_auto_colors=0
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=110
 " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=140
-"let g:indent_guides_enable_on_vim_startup=1
-" let g:indent_guides_guide_size=1
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
 
 set pastetoggle=<F10>
 nnoremap <F10> :set paste!<CR>:set paste?<CR>
