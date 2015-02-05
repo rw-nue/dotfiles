@@ -18,6 +18,8 @@ Bundle 'The-NERD-Commenter'
 Bundle 'Shougo/vimproc'
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'tpope/vim-fugitive'
+
 filetype plugin indent on
 
 map <Space> <Plug>(easymotion-prefix)
@@ -36,9 +38,10 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcv'
 
+syntax on
 set number
 set cindent
-syntax on
+set smartcase
 set backspace=2
 set tabstop=2
 set shiftwidth=2
@@ -58,10 +61,17 @@ set encoding=utf8
 set fileencoding=utf8
 set fileencodings=utf8
 
-set smartcase
 set incsearch
 set hlsearch
 
+" エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
+set laststatus=2
+" ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
+set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+" ステータス行に現在のgitブランチを表示する
+set statusline+=%{fugitive#statusline()}
+" ウインドウのタイトルバーにファイルのパス情報等を表示する
+set title
 
 augroup filetypedetect
 au! BufRead , BufNewFile *.ctp	 setfiletype php
@@ -85,6 +95,9 @@ autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
 autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
 augroup END
 
+
+" grep検索の実行後にQuickFix Listを表示する
+autocmd QuickFixCmdPost *grep* cwindow
 
 
 
@@ -121,6 +134,9 @@ let NERDSpaceDelims = 1
 nmap ,c <Plug>NERDCommenterToggle
 vmap ,c <Plug>NERDCommenterToggle
 
+
+" バッファ一覧
+noremap <C-b><c-f> :Unite buffer<CR>
 " ファイル一覧
 noremap <C-N> :Unite -buffer-name=file file<CR>
 " 最近使ったファイルの一覧
