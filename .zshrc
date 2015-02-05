@@ -300,14 +300,42 @@ diffbranch(){
 alias -g N="${nowbranch}"
 alias -g T="${targetbranch}"
 function show_set_branch(){
+
+nowBranchTitle=`get_ticket_title_from_branch ${nowbranch}`
+targetBranchTitle=`get_ticket_title_from_branch ${targetbranch}`
+
 echo "
 #########################
-now    => ${nowbranch}
-target => ${targetbranch}
+now    => ${nowbranch} :: ${nowBranchTitle}
+target => ${targetbranch} :: ${targetBranchTitle}
 #########################
 "
 }
+function get_ticket_title_from_branch(){
+	if [ $# -lt 1 ] ; then
+		echo "no argument error"
+	else
+		ticketNumber=`get_ticket_number ${1}`;
+		echo `get_ticket_title $ticketNumber`;
+	fi
+}
 
+
+
+function get_ticket_number(){
+	if [ $# -lt 1 ] ; then
+		echo "no argument error"
+	else
+		echo $1 | rev | cut -d"_" -f1 | rev
+	fi
+}
+function get_ticket_title(){
+	if [ $# -lt 1 ] ; then
+		echo "no argument error"
+	else
+		ruby ${HOME}/bin/ticket_title.rb ${1}
+	fi
+}
 # now branch usage put this in .zshrc.local
 #########################
 #nowbranch="feature_30610"
