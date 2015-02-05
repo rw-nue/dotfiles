@@ -9,7 +9,7 @@ Plugin 'haya14busa/vim-easymotion'
 "Plugin 'Lokaltog/vim-easymotion'
 Bundle 'cake.vim'
 Bundle 'neocomplcache'
-Bundle 'surround.vim'
+Bundle "surround.vim"
 Bundle 'taglist.vim'
 Bundle 'ZenCoding.vim'
 Bundle 'ref.vim'
@@ -17,6 +17,7 @@ Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'Shougo/vimproc'
 Bundle 'rking/ag.vim'
+Bundle 'nathanaelkane/vim-indent-guides'
 filetype plugin indent on
 
 map <Space> <Plug>(easymotion-prefix)
@@ -77,8 +78,6 @@ augroup END
 
 
 
-inoremap <c-j> <esc>
-vnoremap <c-j> <esc>
 
 nnoremap [Prefix] <nop>
 nmap <space> [Prefix]
@@ -112,3 +111,73 @@ let g:NERDCreateDefaultMappings = 0
 let NERDSpaceDelims = 1 
 nmap ,c <Plug>NERDCommenterToggle
 vmap ,c <Plug>NERDCommenterToggle
+
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近使ったファイルの一覧
+noremap <C-Z> :Unite file_mru<CR>
+noremap :uff :<C-u>UniteWithBufferDir file -buffer-name=file<CR>
+
+" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
+""""""""""""""""""""""""""""""
+" 挿入モード時、ステータスラインの色を変更
+""""""""""""""""""""""""""""""
+let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
+
+if has('syntax')
+  augroup InsertHook
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+endif
+
+let s:slhlcmd = ''
+function! s:StatusLine(mode)
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
+endfunction
+
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+""""""""""""""""""""""""""""""
+colorscheme default
+" vim-indent-guides
+" let g:indent_guides_auto_colors=0
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=110
+" autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=140
+"let g:indent_guides_enable_on_vim_startup=1
+" let g:indent_guides_guide_size=1
+
+set pastetoggle=<F10>
+nnoremap <F10> :set paste!<CR>:set paste?<CR>
+
+""""""""""""""""""""""""""""""
+" 最後のカーソル位置を復元する
+""""""""""""""""""""""""""""""
+if has("autocmd")
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
+endif
+""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""
+" 自動的に閉じ括弧を入力
+""""""""""""""""""""""""""""""
+imap { {}<LEFT>
+imap [ []<LEFT>
+imap ( ()<LEFT>
+""""""""""""""""""""""""""""""
