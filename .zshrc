@@ -342,3 +342,20 @@ function get_ticket_title(){
 #targetbranch="ver_30277"
 #########################
 
+
+
+
+function vundleInstallForce(){
+  vim +PluginInstall! +qall
+}
+function vundleInstall(){
+#TODO need to get option correctly here
+if [ $# -eq 1 ] && [ "${1}" == "-f" ] ; then
+  vim +PluginInstall! +qall
+else
+  vim +PluginInstall +qall
+fi
+
+}
+alias vimprocMake="cd ${HOME}/dotfiles/.vim/bundle/vimproc/;make;cd ~-";
+
