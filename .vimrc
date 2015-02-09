@@ -19,6 +19,7 @@ Bundle 'Shougo/vimproc'
 Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tobyS/pdv'
 
 filetype plugin indent on
 
