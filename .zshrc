@@ -1,6 +1,22 @@
 autoload -U compinit
 compinit -u
 
+bblue=$'\e[1;104m'
+boldGreen=$'\e[1;32m'
+bBoldGreen=$'\e[1;42m'
+bBlackGreen=$'\e[7;49;32m'
+boldRed=$'\e[1;31m'
+bBoldRed=$'\e[31;41m'
+bBlackRed=$'\e[7;49;91m'
+normalGreen=$'\e[30m'
+cyan=$'\e[36m'
+bcyan=$'\e[46m'
+byellow=$'\e[43m'
+red=$'\e[31m'
+green=$'\e[32m'
+default=$'\e[m'
+
+
 source ~/.bash_profile
 source ~/.bashrc
 if [ -f ~/dotfiles/.aliases ]; then
@@ -359,3 +375,27 @@ fi
 }
 alias vimprocMake="cd ${HOME}/dotfiles/.vim/bundle/vimproc/;make;cd ~-";
 
+function check(){
+if [ $# -lt 1 ]; then
+  echoNoArgument
+else
+  checkme=$1
+  echo "
+${green}whereis : $checkme${default}"
+  whereis $checkme
+  echo "
+${green}which : $checkme${default}"
+  which $checkme
+fi
+}
+echoNoArgument(){
+		echo "${red}empty argument${default}" ;
+}
+function exitIfNoArgument(){
+	if [ $# -lt 1 ]; then
+    echoNoArgument
+    return 1
+  else
+    return 0
+	fi
+}

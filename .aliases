@@ -121,6 +121,7 @@ alias vdupdate="vim $HOME/dotfiles/bin/dots_update.sh"
 alias vdinit="vim $HOME/dotfiles/bin/dots_init.sh"
 
 alias dotfiles_update="sh $HOME/dotfiles/bin/dots_update.sh"
+alias dop="dotfiles_update"
 alias dotfiles_init="sh $HOME/dotfiles/bin/dots_init.sh"
 alias cdot="cd $HOME/dotfiles"
 
