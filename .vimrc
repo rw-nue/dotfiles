@@ -20,6 +20,7 @@ Bundle 'rking/ag.vim'
 Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tobyS/pdv'
+Bundle 'git://github.com/thinca/vim-qfreplace.git'
 
 filetype plugin indent on
 
