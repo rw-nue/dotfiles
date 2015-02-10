@@ -21,6 +21,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tobyS/pdv'
 Bundle 'git://github.com/thinca/vim-qfreplace.git'
+Plugin '2072/PHP-Indenting-for-VIm'
 
 filetype plugin indent on
 
@@ -723,3 +724,13 @@ endfunc
 " }}}
 
 endif " user_commands
+
+map <C-b> :% ! phpBeautifier<CR>
+
+function! s:PhpStylist()
+  execute "w"
+  normal ggdG
+  execute "0r!~/bin/phpStylist %"
+  normal Gdd
+endfunction
+command! PhpStylist call <SID>PhpStylist()
