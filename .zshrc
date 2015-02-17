@@ -19,8 +19,15 @@ default=$'\e[m'
 
 source ~/.bash_profile
 source ~/.bashrc
+
 if [ -f ~/dotfiles/.aliases ]; then
 source ~/dotfiles/.aliases
+fi
+if [ -f ~/.dotfiles/.zshrc.local ]; then
+source ~/.dotfiles/.zshrc.local
+fi
+if [ -f ~/.dotfiles/.bashrc.local ]; then
+source ~/.dotfiles/.bashrc.local
 fi
 
 
@@ -402,3 +409,4 @@ function exitIfNoArgument(){
     return 0
 	fi
 }
+
