@@ -88,6 +88,8 @@ filetype plugin indent on       " restore filetype
     " "let g:neocomplete#sources#tags#cache_limit_size     = 10000000
 " endfunction
 " unlet s:hooks
+"
+" php dict.php | sort > ~/.vim/dict/php.dict
 
 
 " let g:UltiSnipsJumpForwardTrigger='<TAB>'
@@ -891,3 +893,5 @@ function! s:hooks.on_source(bundle)
 endfunction
 unlet s:hooks
 "}}}
+"wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O "$HOME/.vim/phpCsFixer/php-cs-fixer
+"chmod a+x $HOME/.vim/phpCsFixer/php-cs-fixer
