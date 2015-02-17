@@ -361,15 +361,18 @@ function get_ticket_title(){
 
 
 
-function vundleInstallForce(){
-  vim +PluginInstall! +qall
+function bundleUpdate(){
+  vim +NeoBundleUpdate +qall
 }
-function vundleInstall(){
+function bundleInstallForce(){
+  vim +NeoBundleInstall +qall
+}
+function bundleInstall(){
 #TODO need to get option correctly here
 if [ $# -eq 1 ] && [ "${1}" == "-f" ] ; then
   vim +PluginInstall! +qall
 else
-  vim +PluginInstall +qall
+  vim +NeoBundleInstall +qall
 fi
 
 }

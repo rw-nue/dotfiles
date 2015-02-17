@@ -1,29 +1,98 @@
 set nocompatible
-filetype off
-
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-Plugin 'ctrlp.vim'
-Bundle 'unite.vim'
-Plugin 'haya14busa/vim-easymotion'
+filetype off            " for NeoBundle
+ 
+if has('vim_starting')
+        set rtp+=$HOME/.vim/bundle/neobundle.vim/
+endif
+call neobundle#begin(expand('~/.vim/bundle'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
+ 
+" ここから NeoBundle でプラグインを設定します
+ 
+" NeoBundle で管理するプラグインを追加します。
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
+NeoBundle 'Shougo/neocomplcache.git'
+NeoBundle 'Shougo/unite.vim.git'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'ctrlp.vim'
+NeoBundle 'haya14busa/vim-easymotion'
 "Plugin 'Lokaltog/vim-easymotion'
-Bundle 'cake.vim'
-Bundle 'neocomplcache'
-Bundle "surround.vim"
-Bundle 'taglist.vim'
-Bundle 'ZenCoding.vim'
-Bundle 'ref.vim'
-Bundle 'The-NERD-tree'
-Bundle 'The-NERD-Commenter'
-Bundle 'Shougo/vimproc'
-Bundle 'rking/ag.vim'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tobyS/pdv'
-Bundle 'git://github.com/thinca/vim-qfreplace.git'
-Plugin '2072/PHP-Indenting-for-VIm'
+NeoBundle 'cake.vim'
+NeoBundle 'neocomplcache'
+NeoBundle "surround.vim"
+NeoBundle 'taglist.vim'
+NeoBundle 'ZenCoding.vim'
+NeoBundle 'ref.vim'
+NeoBundle 'The-NERD-tree'
+NeoBundle 'The-NERD-Commenter'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tobyS/pdv'
+NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
+NeoBundle '2072/PHP-Indenting-for-VIm'
+NeoBundle 'szw/vim-tags'
+NeoBundleLazy 'vim-scripts/taglist.vim', {
+\    'autoload' : {
+\        'commands' : 'Tlist',},}
+NeoBundle 'thinca/vim-quickrun'
+NeoBundleLazy 'osyo-manga/vim-watchdogs', {
+\    'depends': ['thinca/vim-quickrun', 'osyo-manga/shabadou.vim', 'KazuakiM/vim-qfsigns', 'KazuakiM/vim-qfstatusline', 'dannyob/quickfixstatus'],
+\    'autoload' : {
+\        'filetypes': ['php'],},}
+NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
+\    'autoload' : {
+\        'filetypes': 'php',},}
+ 
 
-filetype plugin indent on
+NeoBundle 'KazuakiM/vim-snippets'
+" NeoBundle 'SirVer/ultisnips'
+" NeoBundleLazy 'Shougo/neocomplete.vim', {
+" \    'depends': ['KazuakiM/vim-snippets', 'SirVer/ultisnips', 'Shougo/context_filetype.vim'],
+" \    'autoload' : {
+" \        'insert' : 1,},}
+
+
+filetype plugin indent on       " restore filetype
+
+" let s:hooks = neobundle#get_hooks('neocomplete.vim')
+" function! s:hooks.on_source(bundle)
+    " let g:acp_enableAtStartup                  = 0
+    " let g:neocomplete#data_directory           = $HOME.'/.vim/neocomplete.vim'
+    " let g:neocomplete#enable_at_startup        = 1
+    " let g:neocomplete#enable_smart_case        = 1
+    " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " let g:neocomplete#same_filetypes           = {
+    " \   'html': 'html,css,javascript,php',}
+    " let g:neocomplete#sources = {
+    " \   '_':    ['file', 'ultisnips', 'buffer', 'member', 'dictionary',],
+    " \   'vim':  ['file', 'ultisnips', 'buffer', 'member', 'dictionary', 'syntax', 'vim'],
+    " \   'html': ['file', 'ultisnips', 'buffer', 'member', 'dictionary', 'syntax',],}
+    " let g:neocomplete#sources#dictionary#dictionaries = {
+    " \   'default':  '',
+    " \   'php':      $HOME.'/.vim/dict/php.dict',}
+    " let g:neocomplete#sources#syntax#min_keyword_length = 3
+    " inoremap <expr><C-c> pumvisible() ? "\<C-n>" : "\<C-c>"
+    " " tags using.
+    " "let g:neocomplete#sources = {
+    " "\   '_':    ['file', 'ultisnips', 'buffer', 'dictionary', 'tag',],
+    " "\   'html': ['file', 'ultisnips', 'buffer', 'dictionary', 'tag', 'syntax',],}
+    " "let g:neocomplete#sources#tags#cache_limit_size     = 10000000
+" endfunction
+" unlet s:hooks
+
+
+" let g:UltiSnipsJumpForwardTrigger='<TAB>'
+" let g:UltiSnipsEditSplit='vertical'
+" let g:UltiSnipsSnippetsDir=$HOME.'/.vim/bundle/vim-snippets/UltiSnips'
 
 map <Space> <Plug>(easymotion-prefix)
 nmap w <Plug>(easymotion-w)
@@ -46,8 +115,8 @@ set number
 set cindent
 set smartcase
 set backspace=2
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set wildmode=longest,list
 set wildmenu
 set cmdheight=2
@@ -86,17 +155,17 @@ function! PHPLint()
  echo result
 endfunction
 
-inoremap <C-L> <ESC>:call PhpDocSingle()<CR>i
-nnoremap <C-L> :call PhpDocSingle()<CR>
-vnoremap <C-L> :call PhpDocRange()<CR>
+inoremap <C-J> <ESC>:call PhpDocSingle()<CR>i
+nnoremap <C-J> :call PhpDocSingle()<CR>
+vnoremap <C-J> :call PhpDocRange()<CR>
 
 au BufNewFile,BufRead *.ctp set ft=php
 
-augroup InsertHook
-autocmd!
-autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
-autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
-augroup END
+" augroup InsertHook
+" autocmd!
+" autocmd InsertEnter * highlight StatusLine guifg=#ccdc90 guibg=#2E4340
+" autocmd InsertLeave * highlight StatusLine guifg=#2E4340 guibg=#ccdc90
+" augroup END
 
 
 " grep検索の実行後にQuickFix Listを表示する
@@ -734,3 +803,91 @@ function! s:PhpStylist()
   normal Gdd
 endfunction
 command! PhpStylist call <SID>PhpStylist()
+
+:map! <C-L> <Esc>$a
+:map! <C-H> <Esc>^i
+
+:map <C-L> <Esc>$a
+:map <C-H> <Esc>^i
+let php_sql_query = 1
+let php_baselib = 1
+let php_htmlInStrings = 1
+let php_noShortTags = 1
+let php_parent_error_close = 1
+"mysqlの場合
+let g:sql_type_default='mysql'
+
+" vim-tags {{{
+"
+" use this in local vimrc
+" augroup MyAutoCmd
+" autocmd!
+" autocmd BufNewFile,BufRead $HOME/xxx/**.php setlocal tags=$HOME/.vim/tags/xxx.tags
+" augroup END
+"}}}
+" taglist.vim {{{
+let Tlist_Use_Right_Window = 1
+let Tlist_Show_One_File = 1
+let Tlist_Exit_OnlyWindow = 1
+let g:tlist_php_settings = 'php;c:class;f:function;d:constant'
+nnoremap <Leader>t :Tlist<CR>
+"}}}
+
+
+nnoremap <Leader>r :QuickRun<CR>
+" let g:quickrun_config = {
+" \    '_' : {
+" \        'hook/close_buffer/enable_failure':    1,
+" \        'hook/close_buffer/enable_empty_data': 1,
+" \        'runner':                              'vimproc',
+" \        'runner/vimproc/updatetime':           60,
+" \        'outputter':                           'multi:buffer:quickfix',
+" \        'outputter/buffer/split':              ':botright',
+" \        'outputter/buffer/close_on_empty':     1,},
+" \    'watchdogs_checker/_' : {
+" \        'hook/close_quickfix/enable_exit':           1,
+" \        'hook/back_window/enable_exit':              0,
+" \        'hook/back_window/priority_exit':            1,
+" \        'hook/quickfix_status_enable/enable_exit':   1,
+" \        'hook/quickfix_status_enable/priority_exit': 2,
+" \        'hook/qfsigns_update/enable_exit':           1,
+" \        'hook/qfsigns_update/priority_exit':         3,
+" \        'hook/qfstatusline_update/enable_exit':      1,
+" \        'hook/qfstatusline_update/priority_exit':    4,},
+" \    'watchdogs_checker/php' : {
+" \        'command':     'php',
+" \        'exec':        '%c -d error_reporting=E_ALL -d display_errors=1 -d display_startup_errors=1 -d log_errors=0 -d xdebug.cli_color=0 -l %o %s:p',
+" \        'errorformat': '%m\ in\ %f\ on\ line\ %l',},}
+
+let s:hooks = neobundle#get_hooks('vim-watchdogs')
+function! s:hooks.on_source(bundle)
+    "vim-qfsigns
+    nnoremap <Leader>sy :QfsignsJunmp<CR>
+    " vim-qfstatusline (This setting is userd at lightline)
+    " let g:Qfstatusline#UpdateCmd = function('lightline#update')
+    "vim-watchdogs
+    let g:watchdogs_check_BufWritePost_enable = 0
+    let g:watchdogs_check_BufWritePost_enables = {
+    \   'php' : 0,}
+    let g:watchdogs_check_CursorHold_enable = 1
+endfunction
+unlet s:hooks
+
+
+
+
+let s:hooks = neobundle#get_hooks('vim-php-cs-fixer')
+function! s:hooks.on_source(bundle)
+    let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer' " define the path to the php-cs-fixer.phar
+    let g:php_cs_fixer_level='all'              " which level ?
+    let g:php_cs_fixer_config='default'         " configuration
+    let g:php_cs_fixer_php_path='php'           " Path to PHP
+    " If you want to define specific fixers:
+    "let g:php_cs_fixer_fixers_list = 'linefeed,short_tag,indentation'
+    let g:php_cs_fixer_enable_default_mapping=1 " Enable the mapping by default (<leader>pcd)
+    let g:php_cs_fixer_dry_run=0                " Call command with dry-run option
+    let g:php_cs_fixer_verbose=0                " Return the output of command if 1, else an inline information.
+    nnoremap <Leader>php :call PhpCsFixerFixFile()<CR>:e!<CR>
+endfunction
+unlet s:hooks
+"}}}
