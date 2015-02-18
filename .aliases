@@ -49,6 +49,9 @@ alias gsp="git stash pop"
 alias gsa="git stash apply"
 alias gsl="git stash list"
 
+alias gpush="git push"
+alias gpull="git pull"
+
 alias garzip="git archive --format=zip HEAD -o /tmp/gitarchived.zip"
 
 alias where="command -v"
@@ -73,6 +76,9 @@ alias -g X='| xargs'
 
 alias -g ..="../"
 alias -g ...="../../"
+
+alias -g M='master'
+alias -g OM='origin master'
 
 # some more ls aliases
 alias l='ls -CF'
