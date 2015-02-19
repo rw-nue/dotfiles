@@ -103,6 +103,8 @@ alias mkdir='mkdir -p'
 alias -g B='`git branch | peco --prompt "GIT BRANCH>" | head -n 1 | sed -e "s/^\*\s*//g"`'
 #alias -g LR='`git branch -a | peco --query "remotes/ " --prompt "GIT REMOT BRANCH>" | head -n 1 | sed "s/^\*\s*//" | sed "s/remotes\/[^\/]*\/\(\S*\)/\1 \0/"`'
 #alias -g D='`echo S | sed "s/\([0-9a-f]*\)/\1..\1^/" | xargs git diff --name-only | peco --prompt "GIT DIFF FILE>" | head -n 1 | sed "s/^\(\S*\).*/\1/"`'
+alias glga="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias glg="lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
 
 #dotfiles and sources
