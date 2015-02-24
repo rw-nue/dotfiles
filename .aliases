@@ -12,6 +12,7 @@ alias a="git add --all"
 alias r="git reset"
 alias b="git branch "
 alias v="av"
+alias f="git fetch"
 alias av="git branch -a -v "
 alias vv="git branch -vv"
 
