@@ -146,3 +146,5 @@ alias bd="brew doctor"
 alias bl="brew list"
 alias bu="brew update"
 alias bi="brew install"
+
+alias clear_all_screen="screen -ls | grep -v Socket | grep -v screens | cut -d. -f1 | grep -o '[0-9]*' | xargs -I sess screen -S sess -X quit"
