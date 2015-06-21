@@ -148,3 +148,9 @@ alias bu="brew update"
 alias bi="brew install"
 
 alias clear_all_screen="screen -ls | grep -v Socket | grep -v screens | cut -d. -f1 | grep -o '[0-9]*' | xargs -I sess screen -S sess -X quit"
+
+#tail logs
+alias tlh="sudo tail -f -n 10000 /var/log/httpd/access_log"
+alias tlhe="sudo tail -f -n 10000 /var/log/httpd/error_log"
+alias tls="sudo tail -f -n 10000 /var/log/httpd/ssl_access_log"
+alias tlse="sudo tail -f -n 10000 /var/log/httpd/ssl_error_access_log"
