@@ -6,7 +6,6 @@ if has('vim_starting')
 endif
 call neobundle#begin(expand('~/.vim/bundle'))
 NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
  
 " ここから NeoBundle でプラグインを設定します
  
@@ -896,3 +895,4 @@ unlet s:hooks
 "wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O "$HOME/.vim/phpCsFixer/php-cs-fixer
 "chmod a+x $HOME/.vim/phpCsFixer/php-cs-fixer
 so ~/.dotfiles/.vimrc.local
+call neobundle#end()
