@@ -148,9 +148,14 @@ alias bu="brew update"
 alias bi="brew install"
 
 alias clear_all_screen="screen -ls | grep -v Socket | grep -v screens | cut -d. -f1 | grep -o '[0-9]*' | xargs -I sess screen -S sess -X quit"
+alias delete_all_merged_branch="git branch --merged | grep -vE '^\*|master$|develop$' | xargs -I % git branch -d %"
+alias delete_all_remote_branch_does_not_exist_in_local="git push --prune origin \"refs/heads/*:refs/heads/*\""
 
 #tail logs
 alias tlh="sudo tail -f -n 10000 /var/log/httpd/access_log"
 alias tlhe="sudo tail -f -n 10000 /var/log/httpd/error_log"
 alias tls="sudo tail -f -n 10000 /var/log/httpd/ssl_access_log"
 alias tlse="sudo tail -f -n 10000 /var/log/httpd/ssl_error_access_log"
+
+alias vvhost="sudo vim /etc/httpd/conf.d/"
+
