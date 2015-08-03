@@ -79,7 +79,9 @@ alias -g ..="../"
 alias -g ...="../../"
 
 alias -g O='origin'
+alias -g D='develop'
 alias -g M='master'
+alias -g OD='origin develop'
 alias -g OM='origin master'
 
 # some more ls aliases
