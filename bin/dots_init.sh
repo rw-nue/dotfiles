@@ -1,16 +1,16 @@
 #!/bin/bash
 . $HOME/dotfiles/bin/includes/variables
 
-#inits for script
-
+#create $HOME/.dotfiles
 if [ ! -d "$dotdotfiles" ]; then
 		mkdir $dotdotfiles ;
-else
-		echo "exit ... "
-		echo "$dotdotfiles exists cannot setup dotfiles";
-		exit 0;
 fi
 
+#create backup dir
+backup_dir=$dotdotfiles/backup/`date +%Y_%m_%d_%H_%M_%S`
+mkdir -p $backup_dir
+
+exit 0;
 chmod +x "$dotfiles/bin/dots_update.sh"
 chmod +x "$dotfiles/bin/dots_vundle_update.sh"
 
@@ -37,18 +37,16 @@ git config init.templatedir $gitInitTemplateDir
 for file in ${DOT_FILES[@]}
 do
 		homeFile=$HOME/$file
+		backup_file=$backup_dir/$file
 		dotFile=$dotfiles/$file
 		localFile=$dotdotfiles/${file}.local
-		originalFile=$dotdotfiles/${file}.original
-		mixedFile=$dotdotfiles/${file}
 
 		echo "checking initializing file $homeFile ..."
 
-		if [ ! -e "$homeFile" ]; then
-				echo "$homeFile doesnt exist , create blank $homeFile" ;
-				touch $homeFile ;
+		if [ -e "$homeFile" ]; then
+				echo "$homeFile exist , create backup $homeFile" ;
+                cp -prf $homeFile $backup_file
 		fi
-
 		if [ ! -e "$dotFile" ]; then
 				echo "pass this file ..." ;
 				echo "$dotFile doesnt exist" ;
