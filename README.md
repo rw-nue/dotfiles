@@ -1,0 +1,2 @@
+need
+zsh , vim , ctags
