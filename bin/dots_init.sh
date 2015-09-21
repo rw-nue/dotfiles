@@ -10,7 +10,7 @@ fi
 backup_dir=$dotdotfiles/backup/`date +%Y_%m_%d_%H_%M_%S`
 mkdir -p $backup_dir
 
-exit 0;
+#exit 0;
 chmod +x "$dotfiles/bin/dots_update.sh"
 chmod +x "$dotfiles/bin/dots_vundle_update.sh"
 
@@ -19,21 +19,16 @@ gitUserName="rw-nue";
 gitUserEmail="$gitUserName@users.noreply.github.com"
 gitInitTemplateDir="$dotfiles/.git_template"
 
-
 # git config for dotfile directory
 cd $HOME/dotfiles
 echo "git config user.name $gitUserName"
 git config user.name $gitUserName
 echo "git config user.email $gitUserEmail"
 git config user.email $gitUserEmail
-
 echo "git config init.templatedir $gitInitTemplateDir"
 git config init.templatedir $gitInitTemplateDir
 
-
-
-
-
+# dot files
 for file in ${DOT_FILES[@]}
 do
 		homeFile=$HOME/$file
@@ -54,25 +49,24 @@ do
 				echo "pass this file ..." ;
 				echo "$homeFile is already a symbolic link" ;
 		else
-				echo "executing initializing $homeFile ..."
-				cp $homeFile $originalFile
-				mv $homeFile $localFile
-				cp $dotFile $mixedFile
-				ln -s $mixedFile $homeFile
+				echo "ln -s $dotFile $homeFile"
+				ln -s $dotFile $homeFile
 		fi
 done
+
+# dot directories
 for file in ${DOT_DIRS[@]}
 do
 		homeFile=$HOME/$file
+		backup_file=$backup_dir/$file
 		dotFile=$dotfiles/$file
-		originalFile=$dotdotfiles/${file}.original
 
 		echo "checking initializing directory $homeFile ..."
-		if [ ! -e "$homeFile" ]; then
-				echo "$homeFile doesnt exist , create blank $homeFile" ;
-				mkdir -p $homeFile ;
-		fi
 
+		if [ -e "$homeFile" ]; then
+				echo "$homeFile exist , create backup $homeFile" ;
+                cp -prf $homeFile $backup_file
+		fi
 		if [ ! -d "$dotFile" ]; then
 				echo "pass this directory ..." ;
 				echo "$dotFile doesnt exist"
@@ -80,8 +74,7 @@ do
 				echo "pass this directory ..." ;
 				echo "has link already $homeFile" ;
 		else
-				echo "executing initializing directory $homeFile ..."
-				mv $homeFile $originalFile
+				echo "ln -s $dotFile $homeFile"
 				ln -s $dotFile $homeFile
 		fi
 done
