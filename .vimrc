@@ -24,7 +24,7 @@ NeoBundle 'ctrlp.vim'
 NeoBundle 'haya14busa/vim-easymotion'
 NeoBundle "surround.vim"
 NeoBundle 'taglist.vim'
-NeoBundle 'ZenCoding.vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'ref.vim'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
