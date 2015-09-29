@@ -18,14 +18,10 @@ NeoBundle 'Shougo/vimproc', {
     \ 'unix' : 'make -f make_unix.mak',
   \ },
 \ }
-NeoBundle 'Shougo/neocomplcache.git'
 NeoBundle 'Shougo/unite.vim.git'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'ctrlp.vim'
 NeoBundle 'haya14busa/vim-easymotion'
-"Plugin 'Lokaltog/vim-easymotion'
-NeoBundle 'cake.vim'
-NeoBundle 'neocomplcache'
 NeoBundle "surround.vim"
 NeoBundle 'taglist.vim'
 NeoBundle 'ZenCoding.vim'
@@ -53,48 +49,7 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \        'filetypes': 'php',},}
  
 
-NeoBundle 'KazuakiM/vim-snippets'
-" NeoBundle 'SirVer/ultisnips'
-" NeoBundleLazy 'Shougo/neocomplete.vim', {
-" \    'depends': ['KazuakiM/vim-snippets', 'SirVer/ultisnips', 'Shougo/context_filetype.vim'],
-" \    'autoload' : {
-" \        'insert' : 1,},}
-
-
 filetype plugin indent on       " restore filetype
-
-" let s:hooks = neobundle#get_hooks('neocomplete.vim')
-" function! s:hooks.on_source(bundle)
-    " let g:acp_enableAtStartup                  = 0
-    " let g:neocomplete#data_directory           = $HOME.'/.vim/neocomplete.vim'
-    " let g:neocomplete#enable_at_startup        = 1
-    " let g:neocomplete#enable_smart_case        = 1
-    " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-    " let g:neocomplete#same_filetypes           = {
-    " \   'html': 'html,css,javascript,php',}
-    " let g:neocomplete#sources = {
-    " \   '_':    ['file', 'ultisnips', 'buffer', 'member', 'dictionary',],
-    " \   'vim':  ['file', 'ultisnips', 'buffer', 'member', 'dictionary', 'syntax', 'vim'],
-    " \   'html': ['file', 'ultisnips', 'buffer', 'member', 'dictionary', 'syntax',],}
-    " let g:neocomplete#sources#dictionary#dictionaries = {
-    " \   'default':  '',
-    " \   'php':      $HOME.'/.vim/dict/php.dict',}
-    " let g:neocomplete#sources#syntax#min_keyword_length = 3
-    " inoremap <expr><C-c> pumvisible() ? "\<C-n>" : "\<C-c>"
-    " " tags using.
-    " "let g:neocomplete#sources = {
-    " "\   '_':    ['file', 'ultisnips', 'buffer', 'dictionary', 'tag',],
-    " "\   'html': ['file', 'ultisnips', 'buffer', 'dictionary', 'tag', 'syntax',],}
-    " "let g:neocomplete#sources#tags#cache_limit_size     = 10000000
-" endfunction
-" unlet s:hooks
-"
-" php dict.php | sort > ~/.vim/dict/php.dict
-
-
-" let g:UltiSnipsJumpForwardTrigger='<TAB>'
-" let g:UltiSnipsEditSplit='vertical'
-" let g:UltiSnipsSnippetsDir=$HOME.'/.vim/bundle/vim-snippets/UltiSnips'
 
 map <Space> <Plug>(easymotion-prefix)
 nmap w <Plug>(easymotion-w)
@@ -197,7 +152,6 @@ inoremap <C-S-t> <Esc>:tabnew<CR>
 inoremap <C-S-w> <Esc>:tabclose<CR>
 nnoremap <S-h> gT
 nnoremap <S-l> gt
-:set runtimepath +=$HOME/.vim/bundle/snipmate/after
 hi DiffAdd    ctermfg=black ctermbg=2
 hi DiffChange ctermfg=black ctermbg=3
 hi DiffDelete ctermfg=black ctermbg=6
