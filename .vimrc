@@ -75,8 +75,8 @@ set number
 set cindent
 set smartcase
 set backspace=2
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set wildmode=longest,list
 set wildmenu
 set cmdheight=2
