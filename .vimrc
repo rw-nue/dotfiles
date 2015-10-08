@@ -70,7 +70,7 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcv'
 
-syntax on
+syntax enable
 set number
 set cindent
 set smartcase
