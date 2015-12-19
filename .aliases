@@ -161,5 +161,8 @@ alias tls="sudo tail -f -n 10000 /var/log/httpd/ssl_access_log"
 alias tlse="sudo tail -f -n 10000 /var/log/httpd/ssl_error_access_log"
 alias tlall="sudo tail -f -n 100 /var/log/*/*"
 
+alias ridgepole_migrate_develop_dryrun="vendor/bin/ridgepole -c database.yml -E development --apply --dry-run"
+alias ridgepole_migrate_develop_execute="vendor/bin/ridgepole -c database.yml -E development --apply"
+
 alias vvhost="sudo vim /etc/httpd/conf.d/"
 
