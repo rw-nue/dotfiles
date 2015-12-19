@@ -39,6 +39,7 @@ NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'slim-template/vim-slim.git'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundleLazy 'vim-scripts/taglist.vim', {
 \    'autoload' : {
 \        'commands' : 'Tlist',},}
