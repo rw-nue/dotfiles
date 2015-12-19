@@ -159,6 +159,7 @@ alias tlh="sudo tail -f -n 10000 /var/log/httpd/access_log"
 alias tlhe="sudo tail -f -n 10000 /var/log/httpd/error_log"
 alias tls="sudo tail -f -n 10000 /var/log/httpd/ssl_access_log"
 alias tlse="sudo tail -f -n 10000 /var/log/httpd/ssl_error_access_log"
+alias tlall="sudo tail -f -n 100 /var/log/*/*"
 
 alias vvhost="sudo vim /etc/httpd/conf.d/"
 
