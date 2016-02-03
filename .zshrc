@@ -1,5 +1,3 @@
-autoload -U compinit
-compinit -u
 
 bblue=$'\e[1;104m'
 boldGreen=$'\e[1;32m'
@@ -33,6 +31,29 @@ fi
 
 # LANG
 export LANG=ja_JP.UTF-8
+
+## Default shell configuration
+#
+# set prompt
+#
+autoload colors
+colors
+case ${UID} in
+0)
+  PROMPT="%B%{${fg[red]}%}%/#%{${reset_color}%}%b "
+  PROMPT2="%B%{${fg[red]}%}%_#%{${reset_color}%}%b "
+  SPROMPT="%B%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
+  ;;
+*)
+  PROMPT="%{${fg[red]}%}%/%%%{${reset_color}%} "
+  PROMPT2="%{${fg[red]}%}%_%%%{${reset_color}%} "
+  SPROMPT="%{${fg[red]}%}%r is correct? [n,y,a,e]:%{${reset_color}%} "
+  [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
+    PROMPT="%{${fg[white]}%}${HOST%%.*} ${PROMPT}"
+  ;;
+esac
  
 # KEYBIND
 bindkey -v
@@ -111,10 +132,6 @@ setopt auto_param_keys
 setopt auto_param_slash
 ## 補完候補のカーソル選択を有効に
 zstyle ':completion:*:default' menu select=1
-## 補完候補の色づけ
-eval `dircolors`
-export ZLS_COLORS=$LS_COLORS
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 ## 補完候補を詰めて表示
 setopt list_packed
 ## スペルチェック
@@ -178,20 +195,54 @@ setopt brace_ccl
 #fi
  
  
-# 以下は.bashrcと共用
- 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-alias ls='ls --color=auto'
-#alias dir='dir --color=auto'
-#alias vdir='vdir --color=auto'
- 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
  
+#
+# expand aliases before completing
+#
+setopt complete_aliases # aliased ls needs if file/dir completions work
+#alias dir='dir --color=auto'
+#alias vdir='vdir --color=auto'
+## terminal configuration
+unset LSCOLORS
+case "${TERM}" in
+xterm)
+  export TERM=xterm-color
+  ;;
+kterm)
+  export TERM=kterm-color
+  # set BackSpace control character
+  stty erase
+  ;;
+cons25)
+  unset LANG
+  export LSCOLORS=ExFxCxdxBxegedabagacad
+  export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+  zstyle ':completion:*' list-colors \
+    'di=;34;1' 'ln=;35;1' 'so=;32;1' 'ex=31;1' 'bd=46;34' 'cd=43;34'
+  ;;
+esac
+
+# set terminal title including current directory
+#
+case "${TERM}" in
+kterm*|xterm*)
+  precmd() {
+    echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
+  }
+  export LSCOLORS=exfxcxdxbxegedabagacad
+  export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+  zstyle ':completion:*' list-colors \
+    'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
+  ;;
+esac
  
  
 # Load RVM into a shell session *as a function*
@@ -274,11 +325,6 @@ peco-lscd(){
 alias C=peco-lscd
 
 
-typeset -ga precmd_functions
-typeset -ga preexec_functions
-if [[ $ZSH_VERSION == (<5->|4.<4->|4.3.<10->)* ]]; then
-  source ~/.zsh/term.zshrc
-fi
 
 export GREP_OPTIONS='--binary-files=without-match'
 
