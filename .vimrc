@@ -38,7 +38,8 @@ NeoBundle 'tobyS/pdv'
 NeoBundle 'git://github.com/thinca/vim-qfreplace.git'
 NeoBundle '2072/PHP-Indenting-for-VIm'
 NeoBundle 'szw/vim-tags'
-NeoBundle 'slim-template/vim-slim'
+NeoBundle 'slim-template/vim-slim.git'
+NeoBundle 'kchmck/vim-coffee-script'
 NeoBundleLazy 'vim-scripts/taglist.vim', {
 \    'autoload' : {
 \        'commands' : 'Tlist',},}
@@ -50,9 +51,12 @@ NeoBundleLazy 'osyo-manga/vim-watchdogs', {
 NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \    'autoload' : {
 \        'filetypes': 'php',},}
+call neobundle#end()
  
 
-filetype plugin indent on       " restore filetype
+syntax enable
+filetype plugin indent on
+
 
 map <Space> <Plug>(easymotion-prefix)
 nmap w <Plug>(easymotion-w)
@@ -70,7 +74,6 @@ let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcv'
 
-syntax enable
 set number
 set cindent
 set smartcase
@@ -853,7 +856,6 @@ unlet s:hooks
 "wget http://cs.sensiolabs.org/get/php-cs-fixer.phar -O "$HOME/.vim/phpCsFixer/php-cs-fixer
 "chmod a+x $HOME/.vim/phpCsFixer/php-cs-fixer
 so ~/.dotfiles/.vimrc.local
-call neobundle#end()
 
 
 " Plugin key-mappings.
