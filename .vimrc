@@ -51,6 +51,9 @@ NeoBundleLazy 'osyo-manga/vim-watchdogs', {
 NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \    'autoload' : {
 \        'filetypes': 'php',},}
+NeoBundle 'Tagbar'
+"let g:tagbar_ctags_bin='/Users/rwnue/bin/ctags'
+nmap tt :TagbarToggle<CR>
 call neobundle#end()
  
 
