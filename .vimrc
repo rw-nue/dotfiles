@@ -76,6 +76,9 @@ let g:EasyMotion_startofline = 0
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_use_migemo = 1
 let g:EasyMotion_keys='hjklasdfgyuiopqwertnmzxcv'
+nmap s <Plug>(easymotion-s2)
+vmap s <Plug>(easymotion-s2)
+omap z <Plug>(enasymotion-s2)
 
 set number
 set cindent
