@@ -53,12 +53,12 @@ NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \        'filetypes': 'php',},}
 NeoBundle 'Tagbar'
 "let g:tagbar_ctags_bin='/Users/rwnue/bin/ctags'
-nmap tt :TagbarToggle<CR>
-call neobundle#end()
  
 
-syntax enable
+call neobundle#end()
 filetype plugin indent on
+syntax enable
+nmap tt :TagbarToggle<CR>
 
 
 map <Space> <Plug>(easymotion-prefix)
