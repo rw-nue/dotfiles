@@ -15,6 +15,7 @@ alias v="av"
 alias f="git fetch"
 alias av="git branch -a -v "
 alias vv="git branch -vv"
+alias C="git commit"
 
 #alias s="sh $HOME/bin/gs"
 #alias dc="sh $HOME/bin/gdc"
