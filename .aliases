@@ -85,6 +85,8 @@ alias -g D='develop'
 alias -g M='master'
 alias -g OD='origin develop'
 alias -g OM='origin master'
+alias -g CB=`echo_current_branch_name`
+alias -g OCB="origin `echo_current_branch_name`"
 
 # some more ls aliases
 alias l='ls -CF'

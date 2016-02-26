@@ -466,4 +466,7 @@ function exitIfNoArgument(){
     return 0
 	fi
 }
-
+function echo_current_branch_name(){
+name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+echo $name
+}
