@@ -409,4 +409,18 @@ function exitIfNoArgument(){
     return 0
 	fi
 }
-
+function delete_older_than_week(){
+  confirm && for i in `find -maxdepth 1 -type d -mtime +7 -print`; do echo -e "rm -rf $i";rm -rf $i; done;
+}
+confirm () {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case $response in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
