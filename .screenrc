@@ -1,0 +1,44 @@
+defencoding utf8
+encoding utf8 utf8
+defscrollback 10000
+# automatically set title
+setenv SCREENTITLE auto
+#hardstatus alwayslastline "[%02c] %`%-w%{=b bw}%n %t%{-}%+w"
+hardstatus alwayslastline '%m/%d %02c:%s  %L=%-w%45L>%{=u g.}%n %t%{-}%+w %-17<%=%{= .y}(%l)'
+
+
+# switch focus to other region(like vi)
+# orverride default `k'(kill), `t'(time), `b'(break) mappings.
+bind j focus down
+bind k focus up
+bind h focus left
+bind l focus right
+
+
+# continuous switch focus to other region(like vi)
+bind ^J eval 'focus down' 'command -c cfocus'
+bind ^K eval 'focus up'   'command -c cfocus'
+bind ^H eval 'focus left' 'command -c cfocus'
+bind ^L eval 'focus right'   'command -c cfocus'
+bind -c cfocus ^J eval 'focus down'   'command -c cfocus'
+bind -c cfocus ^K eval 'focus up'     'command -c cfocus'
+bind -c cfocus ^H eval 'focus left'    'command -c cfocus'
+bind -c cfocus ^L eval 'focus right' 'command -c cfocus'
+
+caption always '%?%F%{= gW}%:%{= Kk}%?%2n%f%07=%t%='
+bind R eval "source $HOME/.screenrc" "echo '.screenrc reloaded!'"
+
+# continuous resize region
+# orverride default `r'(wrap) mapping.
+bind r eval 'command -c cresize'
+bind -c cresize j eval 'resize +1'  'command -c cresize'
+bind -c cresize k eval 'resize -1'  'command -c cresize'
+bind -c cresize J eval 'resize +10' 'command -c cresize'
+bind -c cresize K eval 'resize -10' 'command -c cresize'
+bind -c cresize = eval 'resize ='   'command -c cresize'
+bind -c cresize n eval 'resize min' 'command -c cresize'
+bind -c cresize x eval 'resize max' 'command -c cresize'
+
+# attrcolor b ".I"
+# defbce on 
+# termcapinfo xterm* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'

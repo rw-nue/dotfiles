@@ -15,6 +15,7 @@ alias v="av"
 alias f="git fetch"
 alias av="git branch -a -v "
 alias vv="git branch -vv"
+alias C="git commit"
 
 #alias s="sh $HOME/bin/gs"
 #alias dc="sh $HOME/bin/gdc"
@@ -84,6 +85,8 @@ alias -g D='develop'
 alias -g M='master'
 alias -g OD='origin develop'
 alias -g OM='origin master'
+alias -g CB=`echo_current_branch_name`
+alias -g OCB="origin `echo_current_branch_name`"
 
 # some more ls aliases
 alias l='ls -CF'
@@ -159,6 +162,10 @@ alias tlh="sudo tail -f -n 10000 /var/log/httpd/access_log"
 alias tlhe="sudo tail -f -n 10000 /var/log/httpd/error_log"
 alias tls="sudo tail -f -n 10000 /var/log/httpd/ssl_access_log"
 alias tlse="sudo tail -f -n 10000 /var/log/httpd/ssl_error_access_log"
+alias tlall="sudo tail -f -n 100 /var/log/*/*"
+
+alias ridgepole_migrate_develop_dryrun="vendor/bin/ridgepole -c database.yml -E development --apply --dry-run"
+alias ridgepole_migrate_develop_execute="vendor/bin/ridgepole -c database.yml -E development --apply"
 
 alias vvhost="sudo vim /etc/httpd/conf.d/"
 
