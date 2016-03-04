@@ -15,6 +15,7 @@ alias v="av"
 alias f="git fetch"
 alias av="git branch -a -v "
 alias vv="git branch -vv"
+alias C="git commit"
 
 #alias s="sh $HOME/bin/gs"
 #alias dc="sh $HOME/bin/gdc"
@@ -85,6 +86,8 @@ alias -g D='develop'
 alias -g M='master'
 alias -g OD='origin develop'
 alias -g OM='origin master'
+alias -g CB=`echo_current_branch_name`
+alias -g OCB="origin `echo_current_branch_name`"
 
 # some more ls aliases
 alias l='ls -CF'

@@ -306,7 +306,7 @@ zle -N peco-select-history
 bindkey '^r' peco-select-history
 
 function peco-cd () {
-local selected_dir=$(find ~/ -type d | peco)
+local selected_dir=$(find . -type d | peco)
 if [ -n "$selected_dir" ]; then
 BUFFER="cd ${selected_dir}"
 zle accept-line
@@ -314,7 +314,18 @@ fi
 zle clear-screen
 }
 zle -N peco-cd
-bindkey '^x^f' peco-cd
+bindkey '^f' peco-cd
+
+function peco-full-cd () {
+local selected_dir=$(find ~/ -type d | peco)
+if [ -n "$selected_dir" ]; then
+BUFFER="cd ${selected_dir}"
+zle accept-line
+fi
+zle clear-screen
+}
+zle -N peco-full-cd
+bindkey '^F^F' peco-full-cd
 
 peco-lscd(){
     local dir="$( ls -1d */ | peco )"
@@ -322,7 +333,7 @@ peco-lscd(){
 	    cd "$dir"
     fi
 }
-alias C=peco-lscd
+alias CD=peco-lscd
 
 
 
@@ -455,4 +466,21 @@ function exitIfNoArgument(){
     return 0
 	fi
 }
-
+function delete_older_than_week(){
+  confirm && for i in `find -maxdepth 1 -type d -mtime +7 -print`; do echo -e "rm -rf $i";rm -rf $i; done;
+}
+confirm () {
+    # call with a prompt string or use a default
+    read -r -p "${1:-Are you sure? [y/N]} " response
+    case $response in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+function echo_current_branch_name(){
+name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
+echo $name
+}
