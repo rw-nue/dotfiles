@@ -18,16 +18,6 @@ default=$'\e[m'
 source ~/.bash_profile
 source ~/.bashrc
 
-if [ -f ~/dotfiles/.aliases ]; then
-source ~/dotfiles/.aliases
-fi
-if [ -f ~/.dotfiles/.zshrc.local ]; then
-source ~/.dotfiles/.zshrc.local
-fi
-if [ -f ~/.dotfiles/.bashrc.local ]; then
-source ~/.dotfiles/.bashrc.local
-fi
-
 
 # LANG
 export LANG=ja_JP.UTF-8
@@ -484,3 +474,14 @@ function echo_current_branch_name(){
 name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
 echo $name
 }
+
+
+if [ -f ~/dotfiles/.aliases ]; then
+source ~/dotfiles/.aliases
+fi
+if [ -f ~/.dotfiles/.zshrc.local ]; then
+source ~/.dotfiles/.zshrc.local
+fi
+if [ -f ~/.dotfiles/.bashrc.local ]; then
+source ~/.dotfiles/.bashrc.local
+fi
