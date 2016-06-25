@@ -1,3 +1,4 @@
+export PATH=$PATH:$HOME/local/bin
 
 bblue=$'\e[1;104m'
 boldGreen=$'\e[1;32m'
