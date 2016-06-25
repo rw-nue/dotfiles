@@ -27,8 +27,6 @@ echo "git config user.email $gitUserEmail"
 git config user.email $gitUserEmail
 echo "git config init.templatedir $gitInitTemplateDir"
 git config init.templatedir $gitInitTemplateDir
-echo "git config --global color.ui auto"
-git config --global color.ui auto
 
 # dot files
 for file in ${DOT_FILES[@]}
