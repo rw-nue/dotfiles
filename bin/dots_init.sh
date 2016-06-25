@@ -80,5 +80,3 @@ do
 				ln -s $dotFile $homeFile
 		fi
 done
-
-sh $dotfiles/bin/dots_vundle_install.sh
