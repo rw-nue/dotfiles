@@ -79,4 +79,4 @@ do
 		fi
 done
 
-sh $dotfiles/bin/dots_vundle_update.sh
+sh $dotfiles/bin/dots_vundle_install.sh
