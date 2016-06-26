@@ -11,7 +11,8 @@ backup_dir=$dotdotfiles/backup/`date +%Y_%m_%d_%H_%M_%S`
 mkdir -p $backup_dir
 
 #exit 0;
-chmod +x "$dotfiles/bin/dots_update.sh"
+# chmod +x "$dotfiles/bin/dots_update.sh"
+chmod +x "$dotfiles/bin/dots_vundle_install.sh"
 chmod +x "$dotfiles/bin/dots_vundle_update.sh"
 
 # settings 
