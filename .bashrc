@@ -4,6 +4,8 @@
 if [ -e $HOME/bin/myfunc.sh ]; then
 . $HOME/bin/myfunc.sh
 fi
+source ~/.bash_gem
+source ~/.bash_proxy
 
 function gsrev(){
 if [ "$1" == "" ] ; then

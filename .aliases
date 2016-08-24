@@ -51,6 +51,7 @@ alias gsc="git stash clear"
 alias gsp="git stash pop"
 alias gsa="git stash apply"
 alias gsl="git stash list"
+alias gslh="git stash list | head"
 
 alias gpush="git push"
 alias gpull="git pull"

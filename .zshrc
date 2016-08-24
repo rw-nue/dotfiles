@@ -12,6 +12,9 @@ bcyan=$'\e[46m'
 byellow=$'\e[43m'
 red=$'\e[31m'
 green=$'\e[32m'
+yellow=$'\e[33m'
+blue=$'\e[34m'
+magenta=$'\e[35m'
 default=$'\e[m'
 
 
@@ -364,6 +367,7 @@ echo ${rnd} ;
 
 alias adbinstall="adb install -r"
 diffbranch(){
+  echo "git diff ${1}..${2} --stat"
 	git diff ${1}..${2} --stat
 }
 
