@@ -170,3 +170,4 @@ alias ridgepole_migrate_develop_dryrun="vendor/bin/ridgepole -c database.yml -E 
 alias ridgepole_migrate_develop_execute="vendor/bin/ridgepole -c database.yml -E development --apply"
 
 alias vvhost="sudo vim /etc/httpd/conf.d/"
+alias catpub="cat ~/.ssh/id_rsa.pub"

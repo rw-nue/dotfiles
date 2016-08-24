@@ -1,3 +1,6 @@
+export PATH=$PATH:$HOME/local/bin
+export PATH=$PATH:$HOME/.rbenv/bin
+eval "$(rbenv init -)"
 
 bblue=$'\e[1;104m'
 boldGreen=$'\e[1;32m'
