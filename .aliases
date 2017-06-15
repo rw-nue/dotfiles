@@ -84,8 +84,10 @@ alias -g ...="../../"
 
 alias -g O='origin'
 alias -g D='develop'
+alias -g R='release'
 alias -g M='master'
 alias -g OD='origin develop'
+alias -g OR='origin release'
 alias -g OM='origin master'
 alias -g CB=`echo_current_branch_name`
 alias -g OCB="origin `echo_current_branch_name`"
