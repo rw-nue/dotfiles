@@ -494,6 +494,30 @@ function echo_current_branch_name(){
   echo $name;
 }
 
+function input(){
+  adb shell input text ${1}
+}
+function keyevent(){
+  adb shell input keyevent ${1}
+}
+
+function tab(){
+  keyevent 61
+}
+function enter(){
+  keyevent 66
+}
+function back(){
+  keyevent 4
+}
+function del(){
+  if [ $# -eq 1 ] 
+  then
+    for i in $(seq 1 $1); do keyevent 67; done
+  else
+    keyevent 67
+  fi
+}
 
 if [ -f ~/dotfiles/.aliases ]; then
 source ~/dotfiles/.aliases
