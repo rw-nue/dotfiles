@@ -4,7 +4,6 @@
 alias d="git diff"
 alias t="tig"
 alias ts="tig status"
-alias tigs="tig -S"
 alias dc="git diff --cached"
 alias m="git commit -m"
 alias s="git status -s -u -b"
