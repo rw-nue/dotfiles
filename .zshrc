@@ -301,6 +301,17 @@ zle clear-screen
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+function tig-history-file () {
+  local selected_file=$(git ls-files | peco)
+  if [ -n "$selected_file" ]; then
+    BUFFER="tig -- ${selected_file}"
+    zle accept-line
+  fi
+    zle clear-screen
+}
+zle -N tig-history-file
+bindkey '^h' tig-history-file
+
 function peco-cd () {
 local selected_dir=$(find . -type d | peco)
 if [ -n "$selected_dir" ]; then
