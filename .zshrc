@@ -528,3 +528,21 @@ fi
 if [ -f ~/.dotfiles/.bashrc.local ]; then
 source ~/.dotfiles/.bashrc.local
 fi
+# /**
+# setLF
+#
+# remove break line inside passed as standard input in script command
+# example
+# setLF;
+# 176 open -a ${BROWSER} "${GHE_URL}$(curl -s -L ${APP_URL} |\
+# 177   xmllint --html --xpath 2>/dev/null "//li[@class='list-group-item']/a" - |\
+# 178   sed -e 's/\/a>/\/a>\\n/g' | sed 's/\\n/'"$LF"'/g' |\
+# 179   grep 00_entity |\
+# 180   sed -e 's/<a.*"\(.*\)">\(.*\)<\/a>/\2 - \[\1\]/' |\
+# 181   peco |\
+# 182   sed -e 's/.*\[\(.*\)\]/\1/')"
+# 183   zle clear-screen
+# */
+function setLF(){
+  LF=$(printf '\\\012_');LF=${LF%_};
+}
